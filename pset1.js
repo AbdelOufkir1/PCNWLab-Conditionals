@@ -3,6 +3,7 @@ function generateRandomNumberFromRange( s, e ) {
     return random;
 }
 
+
 /*
     @func generateTrafficLight
     @returns {string}
@@ -13,6 +14,17 @@ function generateRandomNumberFromRange( s, e ) {
             
     @example generateTrafficLight(); // 'red' or 'blue' or 'green'
 */
+const generateTrafficLight = () => {
+   let num = Math.floor(Math.random()*2);
+
+    if (num === 1) 
+        return 'red';
+    else if (num === 2)
+        return 'green';
+    else  
+        return 'blue';
+}
+
 
 /*
     @func generateRandomPhoneNumber
@@ -22,6 +34,29 @@ function generateRandomNumberFromRange( s, e ) {
             
     @example generateRandomPhoneNumber(); // "1-718-786-2825"
 */
+
+const generateRandomNumber = () => {
+    let num = Math.floor(Math.random()*90 + 100);
+    let num2 = Math.floor(Math.random()*90 + 100);
+    let num3 = Math.floor(Math.random()*9000 + 100);
+    let phoneNum = '1-'+ num + '-' + num2 + '-' + num3;
+    return phoneNum;
+}
+
+console.log("Random Phone#:", generateRandomNumber());
+
+// const generateRandomPhoneNumber = () => {
+     
+//     let num =0;
+//     while (num < 10000000000){
+
+//     Math.floor(Math.random()*20000000000);
+//     }
+    
+//     return num;
+// }
+
+// console.log(generateRandomPhoneNumber());
 
 /*
     @func generateRandomRGB
@@ -33,6 +68,19 @@ function generateRandomNumberFromRange( s, e ) {
     
     @example generateRandomRGB(); // "rgb(255, 123, 0)"
 */
+   
+
+
+const generateRandomRGB = () => {
+    let num1 = generateRandomNumberFromRange(0,255);
+    let num2 = generateRandomNumberFromRange(0,255);
+    let num3 = generateRandomNumberFromRange(0,255);
+
+    return 'rgb (' + num1 + ', ' + num2 + ', ' + num3 + ')';
+
+}
+
+console.log(generateRandomRGB());
 
 /*
     @func generateLottoTicket
@@ -46,6 +94,19 @@ function generateRandomNumberFromRange( s, e ) {
     
     @example generateLottoTicket(); // L 9 11-28
 */
+
+const generateLottoTicket = () => {
+    
+    let num1 = Math.floor(Math.random()*9 + 1);
+    let num2 = Math.floor(Math.random()*15 + 1);
+    let num3 = Math.floor(Math.random()*30 + 1);
+
+    console.log('L [0-9] [0-15]-[0-30]');
+
+    return 'L ' + num1 + ' ' + num2 + '-' + num3;
+}
+
+console.log(generateLottoTicket());
 
 /*
     @func generatePhoneNumberWithAreaCode
@@ -61,6 +122,16 @@ function generateRandomNumberFromRange( s, e ) {
     @example generatePhoneNumberWithAreaCode( 646 ); // "1-646-786-2825"
 */
 
+const generatePhoneNumberWithAreaCode = (num) => {
+
+    if (num !== undefined ) 
+        return '1-' + num + '-' + generateRandomNumberFromRange(100,1000) + '-'+ generateRandomNumberFromRange(100,10000);
+    else 
+    return '1-' + generateRandomNumberFromRange(100,1000) + '-' + generateRandomNumberFromRange(100,1000) + '-' +  generateRandomNumberFromRange(100,10000);
+}
+
+
+console.log(generatePhoneNumberWithAreaCode(347));
 
 /*
     @func generateTicketWithLetters
@@ -76,6 +147,21 @@ function generateRandomNumberFromRange( s, e ) {
             
         @example generateLottoTicket(); // L g M-28
 */
+
+const generateTicketWithLetters = () => {
+
+    let num = Math.floor(Math.random()*10);
+    let lowerLetter = String.fromCharCode(Math.floor(generateRandomNumberFromRange(97,122)));
+    let upperLetter = String.fromCharCode(Math.floor(generateRandomNumberFromRange(65,90)));
+    let num2 = Math.floor(Math.random()*30);
+
+    console.log('L [a-z] [A-Z]-[0-30]');
+
+    return 'L' + ' ' + lowerLetter + ' ' + upperLetter + '-' + num2;
+}
+
+
+console.log(generateTicketWithLetters());
 
 /*
     @func rockPaperScissors
@@ -98,6 +184,20 @@ function generateRandomNumberFromRange( s, e ) {
     @example rockPaperScissors(); // -1
 */
 
+const rockPaperScissors = (par1, par2) => {
+
+   if (((par1 === 'rock') && (par2 === 'paper')) || ((par1 === 'paper') && (par2 === 'scissors')) || ((par1 === 'scissors') && (par2 === 'rock')))
+   return 2;
+   else if (((par1 === 'rock') && (par2 === 'scissors')) || ((par1 === 'paper') && (par2 === 'rock')) || ((par1 === 'scissors') && (par2 === 'paper')))
+    return 1;
+    else if (par1 === par2)
+    return 0;
+    else 
+    return -1;
+}
+
+console.log(rockPaperScissors('rock','rock'));
+
 /*
     @func RPSwithComputer
     @param {string} player
@@ -113,6 +213,33 @@ function generateRandomNumberFromRange( s, e ) {
     @example rockPaperScissors( "rock" ); // 0, if tied
     @example rockPaperScissors(); // -1
 */
+
+
+const RPSwithComputer = (par1) => {
+    let comptChoice = generateRandomNumberFromRange(0,2);
+    let par2 = '';
+
+    if (comptChoice === 0)
+        par2 = 'rock';
+    else if (comptChoice === 1)
+        par2 = 'scissors';
+        else
+        par2 = 'paper';
+
+
+    if (((par1 === 'rock') && (par2 === 'paper')) || ((par1 === 'paper') && (par2 === 'scissors')) || ((par1 === 'scissors') && (par2 === 'rock')))
+    return 2;
+    else if (((par1 === 'rock') && (par2 === 'scissors')) || ((par1 === 'paper') && (par2 === 'rock')) || ((par1 === 'scissors') && (par2 === 'paper')))
+     return 1;
+     else if (par1 === par2)
+     return 0;
+     else 
+     return -1;
+
+}
+
+RPSwithComputer('rock');
+
 
 /*
     @func calculateGrade
@@ -130,9 +257,24 @@ function generateRandomNumberFromRange( s, e ) {
     @example calculateGrade( 10000 ); // Error
     @example calculateGrade( "lol skool sucks" ); // Error
     
-*/
 
-function calculateGrade( grade ) {
+   */
+
+   const calculateGrade = (num) => {
+
+    if (num >= 90) return 'A';
+    else if (num >= 80) return 'B';
+    else if (num >= 70) return 'C';
+    else if (num >= 60) return 'D';
+    else if (num > 0 && num <= 54) return 'F';
+    else 
+        return 'Error';
+    
+   }
+
+   console.log(calculateGrade(-1));
+
+//function calculateGrade( grade ) {
     // Write your codes below here
     /*
         assume that grade is the value the user input
@@ -148,8 +290,22 @@ function calculateGrade( grade ) {
             UPDATE grade = F
     */
     
-    if ( grade > 90 ) {
-        return "A";
-    }
-   return "F"; // you may choose not to use this
-} 
+//     if ( grade > 90 ) {
+//         return "A";
+//     }
+//    return "F"; // you may choose not to use this
+// } 
+
+
+const calculateGrade2 = (grade) => {
+    
+    if (grade>95 && grade<= 100) return 'A';
+    else if (grade>85 && grade<=95) return 'B';
+    else if (grade>75 && grade<=85) return 'C';
+    else if (grade>65 && grade<=75) return 'D';
+    else if (grade<65) return 'F';
+    else 
+    return 'Error';
+}
+
+console.log(calculateGrade2(77));
